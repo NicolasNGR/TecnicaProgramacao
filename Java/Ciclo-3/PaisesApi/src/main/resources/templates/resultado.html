@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultado do País</title>
+    <link rel="stylesheet" th:href="@{/css/estilo.css}">
+</head>
+<body>
+<div class="container">
+    <h1>Dados do País</h1>
+    <div class="card">
+        <img th:src="${pais.urlBandeira}" alt="Bandeira" class="bandeira">
+        <p><strong>Nome comum:</strong> <span th:text="${pais.nomeComum}"></span></p>
+        <p><strong>Nome oficial:</strong> <span th:text="${pais.nomeOficial}"></span></p>
+        <p><strong>Capital:</strong> <span th:text="${pais.capital}"></span></p>
+        <p><strong>Região:</strong> <span th:text="${pais.regiao}"></span></p>
+        <p><strong>Sub-região:</strong> <span th:text="${pais.subRegiao}"></span></p>
+        <p><strong>População:</strong> <span th:text="${#numbers.formatInteger(pais.populacao, 0, 'POINT')}"></span></p>
+        <p><strong>Área:</strong> <span th:text="${#numbers.formatDecimal(pais.area, 1, 2, 'COMMA')}"></span> km²</p>
+    </div>
+    <a th:href="@{/}" class="voltar">Nova consulta</a>
+</div>
+</body>
+</html>

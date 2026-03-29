@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consulta de Países</title>
+    <link rel="stylesheet" th:href="@{/css/estilo.css}">
+</head>
+<body>
+<div class="container">
+    <h1>Consulta de Países</h1>
+    <form th:action="@{/buscar}" th:object="${paisFormulario}" method="post" class="formulario">
+        <label for="nomePais">Nome do país em inglês</label>
+        <input type="text" id="nomePais" th:field="*{nomePais}" placeholder="Digite o país em inglês">
+        <span class="erro" th:if="${#fields.hasErrors('nomePais')}" th:errors="*{nomePais}"></span>
+        <button type="submit">Buscar</button>
+    </form>
+
+    <div class="erro-box" th:if="${erro != null}">
+        <p th:text="${erro}"></p>
+    </div>
+</div>
+</body>
+</html>
