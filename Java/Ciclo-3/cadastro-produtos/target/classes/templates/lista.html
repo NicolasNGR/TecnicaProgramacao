@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Produtos</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<div class="container">
+    <h1>Lista de Produtos</h1>
+
+    <table th:if="${!#lists.isEmpty(produtos)}">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Preço</th>
+                <th>Categoria</th>
+                <th>Estoque</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="produto : ${produtos}">
+                <td th:text="${produto.id}"></td>
+                <td th:text="${produto.nome}"></td>
+                <td th:text="${#numbers.formatDecimal(produto.preco, 1, 2)}"></td>
+                <td th:text="${produto.categoria}"></td>
+                <td th:text="${produto.estoque}"></td>
+                <td>
+                    <a class="remover" th:href="@{/remover/{id}(id=${produto.id})}">Remover</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <p th:if="${#lists.isEmpty(produtos)}">Nenhum produto cadastrado.</p>
+
+    <p class="total">Total de produtos cadastrados: <strong th:text="${totalProdutos}"></strong></p>
+
+    <a class="link" th:href="@{/form}">Novo cadastro</a>
+</div>
+</body>
+</html>
